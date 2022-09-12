@@ -1,11 +1,14 @@
 // Crear un array vacío llamado 'toDoItems'
 // Tu codigo acá:
 
+const toDoItems =[]
+
 
 // En la página 'index.html' hay un elemento span cuyo texto es 'Aplicación creada por:'.
 // Usando querySelector seleccionar dicho span por su id ('createdBy') y luego usando innerHTML
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
+document.querySelector('#createdBy').innerHTML += " Ana"; 
 
 
 
@@ -16,9 +19,10 @@
 // 2) 'complete'    : debe setearse en false
 // Ayuda: usar 'this' en el constructor
 
-function ToDo () {
+function ToDo (description) {
   // Tu código acá:
-
+this.description= description;
+this.complete= false;
 }
 
 
@@ -27,7 +31,9 @@ function ToDo () {
 // Debe setear el atributo 'complete' del ToDo en true
 
 // Tu código acá:
-
+ToDo.prototype.completeToDo= function(){
+  this.complete= true
+}
 
 
 // Agregar dos parámetros a la función 'buildToDo':
@@ -50,6 +56,17 @@ function ToDo () {
 
 function buildToDo(todo, index) {
   // Tu código acá:
+  const toDoShell = document.createElement('div');
+  toDoShell.className = 'toDoShell'; // otras dos formas serian con el classList.add('toDoShell') y con el setAtribute ('class','toDoShell')
+  const toDoText = document.createElement('span');
+  toDoText.onclick = completeToDo;
+  toDoText.innerHTML= todo.description; // al todotext (guadado por variables, osea el span creado) le asigno el valor description del objeto todo pasado por argumento. 
+  toDoText.id = index;
+  if (todo.complete === true) toDoText.Class = 'completeText'
+  else '';
+  toDoShell.appendChild = 'toDoText';
+  return toDoShell; 
+
 
 }
 
@@ -58,8 +75,14 @@ function buildToDo(todo, index) {
 // Utilizar el método map usando la función previamente creada ('buildToDo')
 // Devolver el nuevo array
 
+
+//METODO MAP//
+// .map() ====> crea un nuevo array llamando a una funcion para caa elemento del array original. No ejecuta arrays vacios.
+
 function buildToDos(toDos) {
   // Tu código acá:
+  return toDos.map(buildToDo) // toDos es el array al que le aplico el metodo map. retornandome un array con los mismos elementos pero con la funcion aplicada a cada elemento del 'buildToDo'.
+  // dentro de la funcion que le aplico a cada elemento (map) va el todo y el i como parametros de esa funcion ===> function buildToDo (todo,i). 
 
 }
 
@@ -75,7 +98,11 @@ function buildToDos(toDos) {
 
 function displayToDos() {
   // Tu código acá:
-
+  const toDoContainer = document.querySelector('#toDoContainer');
+  toDoContainer.innerHTML = '';
+  buildToDos(toDoItems).forEach(element => { 
+    toDoContainer.appendChild(element)
+    });
 }
 
 
@@ -90,7 +117,11 @@ function displayToDos() {
 
 function addToDo() {
   // Tu código acá:
-
+const toDoInput = document.querySelector('#toDoInput');
+const todo = new ToDo (toDoInput.value);
+toDoItems.push(todo)
+toDoInput.value = '';
+displayToDos();
 }
 
 // Agregar un 'Event Listener' para que cada vez que el botón 'AGREGAR' sea clickeado
@@ -99,6 +130,10 @@ function addToDo() {
 //   2) Agregarle un 'click' event listener, pasándole la función 'addToDo' como callback
 
 // Tu código acá:
+const addButton = document.querySelector('#addButton');
+addButton.onclick = function(){ // el onclick es especifico para ejecutar una sola funcion en el momento indicado, si queremos ejecutar funciones en simultaneo utilizar addEventListener
+  addToDo ()
+}
 
 
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
@@ -115,8 +150,11 @@ function addToDo() {
 
 function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
-  // const index = event.target.id;
+  const index = event.target.id; // CONSULTAR QUE HACE ESTA LINEA// 
   // Tu código acá:
+  toDoItems[index].completeToDo();// ESTA LINEA NO ME QUEDO DEL TODO CLARA//
+  displayToDos();
+
 
 }
 
@@ -137,6 +175,8 @@ function completeToDo(event) {
 
 
 // Acá debes insertar la llamada a 'displayToDos'
+
+displayToDos()
 
 
 // ---------------------------- NO CAMBIES NADA DE ACÁ PARA ABAJO ----------------------------- //

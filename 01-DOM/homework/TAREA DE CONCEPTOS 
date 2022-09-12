@@ -1,0 +1,18 @@
+// DOM : Document object model. 
+//  Es una interfaz de programación que nos permite crear, cambiar, o remover elementos del documento. También podemos agregar eventos a esos elementos para hacer más dinámica nuestra página.
+//El DOM visualiza el documento de HTML como un árbol de tres nodos. Un nodo representa un documento de HTML.
+
+
+
+
+
+
+// DOM ELEMENT SELECTORS :Dentro de todos los métodos que contiene `document` en su prototipo los más útiles son los **selectores**. Los **selectores** nos permitiran buscar y recuperar un elemento del DOM. (como cuando buscabamos un elemento en un árbol de búsqueda), sólo que ahora el elemento retornado es un objeto JS que representa una entidad HTML.
+
+
+
+
+
+
+// DOM EVENT: señal de que algo sucedió.
+// Todos los elementos del DOM pueden generar estas señales.

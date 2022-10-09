@@ -22,7 +22,7 @@ function App() {
         <Cards
           cities={data}
         />
-      </div>
+      </div>  
       <hr />
       <div>
         <SearchBar

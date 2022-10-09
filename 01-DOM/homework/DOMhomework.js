@@ -152,7 +152,7 @@ function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
   const index = event.target.id; // CONSULTAR QUE HACE ESTA LINEA// 
   // Tu código acá:
-  toDoItems[index].completeToDo();// ESTA LINEA NO ME QUEDO DEL TODO CLARA//
+  toDoItems[index].completeToDo();
   displayToDos();
 
 

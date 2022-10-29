@@ -45,4 +45,5 @@ export class Buscador extends Component {
   }
 }
 
-export default Buscador;
+
+

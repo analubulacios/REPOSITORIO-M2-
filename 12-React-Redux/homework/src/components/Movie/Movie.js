@@ -18,5 +18,3 @@ class Movie extends React.Component {
 }
 
 
-
-export default (Movie);
